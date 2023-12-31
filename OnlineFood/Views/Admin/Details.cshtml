@@ -1,0 +1,26 @@
+﻿@model OnlineFood.Restaurant
+
+@{
+    ViewBag.Title = "Details";
+
+}
+
+<h2>Restaurant Details</h2>
+
+<div>
+    <h2>Restaurant Information</h2>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>Restaurant ID</dt>
+        <dd>@Model.RestaurentId</dd>
+        <dt>Restaurant Name</dt>
+        <dd>@Model.RestaurentName</dd>
+        <dt>Available</dt>
+        <dd>@(Model.RestaurentAvailable ? "Yes" : "No")</dd>
+        <dt>Logo URL</dt>
+        <dd>@Model.RestaurentLogoUrl</dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to Restaurents Page", "Index")
+</p>

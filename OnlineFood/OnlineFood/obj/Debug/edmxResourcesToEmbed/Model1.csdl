@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OnlineFoodDeliveryAPPDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdminUsername" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AdminPhone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="AdminFName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AdminLName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AdminPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Restaurants" Relationship="Self.FK_RestaurentAdmin" FromRole="Admins" ToRole="Restaurants" />
+  </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="CartId" />
+    </Key>
+    <Property Name="CartId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CartCustId" Type="Int64" Nullable="false" />
+    <Property Name="CartFoodId" Type="Int64" Nullable="false" />
+    <Property Name="CartFoodName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CartFoodQty" Type="Int64" Nullable="false" />
+    <Property Name="CartFoodPrice" Type="Int64" Nullable="false" />
+    <Property Name="CartFoodImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Food" Relationship="Self.FK_CartFood" FromRole="Carts" ToRole="Foods" />
+    <NavigationProperty Name="Customer" Relationship="Self.FK_CustomerCart" FromRole="Carts" ToRole="Customers" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="CustId" />
+    </Key>
+    <Property Name="CustId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustPhone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="CustFName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustLName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CustPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK_CustomerCart" FromRole="Customers" ToRole="Carts" />
+  </EntityType>
+  <EntityType Name="Food">
+    <Key>
+      <PropertyRef Name="FoodId" />
+    </Key>
+    <Property Name="FoodId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FoodName" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FoodQty" Type="Int64" Nullable="false" />
+    <Property Name="FoodUnitPrice" Type="Int64" Nullable="false" />
+    <Property Name="FoodDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FoodImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FoodRestaurentId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Carts" Relationship="Self.FK_CartFood" FromRole="Foods" ToRole="Carts" />
+    <NavigationProperty Name="Restaurant" Relationship="Self.FK_FoodRestaurent" FromRole="Foods" ToRole="Restaurants" />
+  </EntityType>
+  <EntityType Name="Restaurant">
+    <Key>
+      <PropertyRef Name="RestaurentId" />
+    </Key>
+    <Property Name="RestaurentId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RestaurentName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RestaurentAvailable" Type="Boolean" Nullable="false" />
+    <Property Name="RestaurentLogoUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RestaurentAdminId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="Admin" Relationship="Self.FK_RestaurentAdmin" FromRole="Restaurants" ToRole="Admins" />
+    <NavigationProperty Name="Foods" Relationship="Self.FK_FoodRestaurent" FromRole="Restaurants" ToRole="Foods" />
+  </EntityType>
+  <Association Name="FK_RestaurentAdmin">
+    <End Role="Admins" Type="Self.Admin" Multiplicity="1" />
+    <End Role="Restaurants" Type="Self.Restaurant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Admins">
+        <PropertyRef Name="AdminId" />
+      </Principal>
+      <Dependent Role="Restaurants">
+        <PropertyRef Name="RestaurentAdminId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CartFood">
+    <End Role="Foods" Type="Self.Food" Multiplicity="1" />
+    <End Role="Carts" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Foods">
+        <PropertyRef Name="FoodId" />
+      </Principal>
+      <Dependent Role="Carts">
+        <PropertyRef Name="CartFoodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CustomerCart">
+    <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+    <End Role="Carts" Type="Self.Cart" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustId" />
+      </Principal>
+      <Dependent Role="Carts">
+        <PropertyRef Name="CartCustId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FoodRestaurent">
+    <End Role="Restaurants" Type="Self.Restaurant" Multiplicity="1" />
+    <End Role="Foods" Type="Self.Food" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Restaurants">
+        <PropertyRef Name="RestaurentId" />
+      </Principal>
+      <Dependent Role="Foods">
+        <PropertyRef Name="FoodRestaurentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OnlineFoodDeliveryAPPDBEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admins" EntityType="Self.Admin" />
+    <EntitySet Name="Carts" EntityType="Self.Cart" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Foods" EntityType="Self.Food" />
+    <EntitySet Name="Restaurants" EntityType="Self.Restaurant" />
+    <AssociationSet Name="FK_RestaurentAdmin" Association="Self.FK_RestaurentAdmin">
+      <End Role="Admins" EntitySet="Admins" />
+      <End Role="Restaurants" EntitySet="Restaurants" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CartFood" Association="Self.FK_CartFood">
+      <End Role="Foods" EntitySet="Foods" />
+      <End Role="Carts" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CustomerCart" Association="Self.FK_CustomerCart">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Carts" EntitySet="Carts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FoodRestaurent" Association="Self.FK_FoodRestaurent">
+      <End Role="Restaurants" EntitySet="Restaurants" />
+      <End Role="Foods" EntitySet="Foods" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

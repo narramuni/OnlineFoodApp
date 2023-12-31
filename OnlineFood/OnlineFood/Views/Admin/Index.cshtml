@@ -1,0 +1,32 @@
+﻿
+@model IEnumerable<OnlineFood.Restaurant>
+
+
+@{
+    ViewBag.Title = "Admin Dashboard";
+}
+
+<h2>Admin Dashboard</h2>
+
+<p>
+    @Html.ActionLink("Create New Restaurant", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>Restaurant Name</th>
+        <!-- Add other column headers as needed -->
+        <th>Actions</th>
+    </tr>
+    @foreach (var restaurant in Model)
+    {
+        <tr>
+            <td>@restaurant.RestaurentName</td>
+            <!-- Display other fields for the Restaurant model as needed -->
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = restaurant.RestaurentId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = restaurant.RestaurentId })
+            </td>
+        </tr>
+    }
+</table>

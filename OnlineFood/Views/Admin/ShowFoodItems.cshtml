@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Food>
+
+@{
+    ViewBag.Title = "Show Food Items";
+}
+
+<h2>Food Items for @ViewBag.Menu.RestaurentName</h2>
+
+<p>
+    @Html.ActionLink("Create New Food", "CreateShowFoodItem", "Admin", new { id = ViewBag.Menu.RestaurentId }, null)
+
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodUnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FoodImage)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodQty)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodUnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodImage)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "DetailsShowFoodItem", new { id = item.FoodId }, new { @class = "btn btn-info" })
+                @Html.ActionLink("Edit", "EditShowFoodItem", new { id = item.FoodId }, new { @class = "btn btn-warning" })
+                @Html.ActionLink("Delete", "DeleteShowFoodItem", new { id = item.FoodId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+
+    }
+
+
+</table>
+
+<div>
+    @Html.ActionLink("Back to List", "Index", "Admin", null, new { @class = "btn btn-primary" })
+</div>
+

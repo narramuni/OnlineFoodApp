@@ -1,0 +1,40 @@
+﻿@model List<OnlineFood.Restaurant>
+
+@{
+    ViewBag.Title = "Index";
+   
+}
+
+<h2>Restaurant List</h2>
+
+@Html.ActionLink("Create New Restaurant", "Create")
+
+<p>@TempData["Message"]</p>
+
+<table class="table">
+    <tr>
+        <th>Restaurant ID</th>
+        <th>Restaurant Name</th>
+        <th>Available</th>
+        <th>Logo URL</th>
+        <th>Actions</th>
+        <th>Show Food Items</th> <!-- New column for the "Show Food Items" button -->
+    </tr>
+    @foreach (var restaurant in Model)
+    {
+        <tr>
+            <td>@restaurant.RestaurentId</td>
+            <td>@restaurant.RestaurentName</td>
+            <td>@(restaurant.RestaurentAvailable ? "Yes" : "No")</td>
+            <td>@restaurant.RestaurentLogoUrl</td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = restaurant.RestaurentId }) ||
+                @Html.ActionLink("EditRestaurent", "EditRestaurent", new { id = restaurant.RestaurentId }) ||
+                @Html.ActionLink("Delete", "Delete", new { id = restaurant.RestaurentId })
+            </td>
+            <td>
+                @Html.ActionLink("Show Food Items", "ShowFoodItems", "Admin", new { id = restaurant.RestaurentId }, new { @class = "btn btn-success" })
+            </td>
+        </tr>
+    }
+</table>

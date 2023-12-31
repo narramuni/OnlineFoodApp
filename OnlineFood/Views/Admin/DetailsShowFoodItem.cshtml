@@ -1,0 +1,33 @@
+﻿
+@model Food
+
+@{
+    ViewBag.Title = "Food Details";
+}
+
+<h2>Details for @Model.FoodName</h2>
+
+<table class="table">
+    <tr>
+        <th>Food Name</th>
+        <td>@Html.DisplayFor(model => model.FoodName)</td>
+    </tr>
+    <tr>
+        <th>Quantity</th>
+        <td>@Html.DisplayFor(model => model.FoodQty)</td>
+    </tr>
+    <tr>
+        <th>Unit Price</th>
+        <td>@Html.DisplayFor(model => model.FoodUnitPrice)</td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td>@Html.DisplayFor(model => model.FoodDescription)</td>
+    </tr>
+    <!-- Add other fields as needed -->
+
+</table>
+@*@Html.ActionLink("Back to List", "Index", "Admin", null, new { @class = "btn btn-primary" })*@
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

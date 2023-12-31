@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="OnlineFoodDeliveryAPPDBModelStoreContainer" CdmEntityContainer="OnlineFoodDeliveryAPPDBEntities1">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="OnlineFoodDeliveryAPPDBModel.Admin">
+        <MappingFragment StoreEntitySet="Admins">
+          <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+          <ScalarProperty Name="AdminUsername" ColumnName="AdminUsername" />
+          <ScalarProperty Name="AdminPhone" ColumnName="AdminPhone" />
+          <ScalarProperty Name="AdminFName" ColumnName="AdminFName" />
+          <ScalarProperty Name="AdminLName" ColumnName="AdminLName" />
+          <ScalarProperty Name="AdminPassword" ColumnName="AdminPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carts">
+      <EntityTypeMapping TypeName="OnlineFoodDeliveryAPPDBModel.Cart">
+        <MappingFragment StoreEntitySet="Carts">
+          <ScalarProperty Name="CartId" ColumnName="CartId" />
+          <ScalarProperty Name="CartCustId" ColumnName="CartCustId" />
+          <ScalarProperty Name="CartFoodId" ColumnName="CartFoodId" />
+          <ScalarProperty Name="CartFoodName" ColumnName="CartFoodName" />
+          <ScalarProperty Name="CartFoodQty" ColumnName="CartFoodQty" />
+          <ScalarProperty Name="CartFoodPrice" ColumnName="CartFoodPrice" />
+          <ScalarProperty Name="CartFoodImage" ColumnName="CartFoodImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="OnlineFoodDeliveryAPPDBModel.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="CustId" ColumnName="CustId" />
+          <ScalarProperty Name="CustEmail" ColumnName="CustEmail" />
+          <ScalarProperty Name="CustPhone" ColumnName="CustPhone" />
+          <ScalarProperty Name="CustFName" ColumnName="CustFName" />
+          <ScalarProperty Name="CustLName" ColumnName="CustLName" />
+          <ScalarProperty Name="CustPassword" ColumnName="CustPassword" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Foods">
+      <EntityTypeMapping TypeName="OnlineFoodDeliveryAPPDBModel.Food">
+        <MappingFragment StoreEntitySet="Foods">
+          <ScalarProperty Name="FoodId" ColumnName="FoodId" />
+          <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+          <ScalarProperty Name="FoodQty" ColumnName="FoodQty" />
+          <ScalarProperty Name="FoodUnitPrice" ColumnName="FoodUnitPrice" />
+          <ScalarProperty Name="FoodDescription" ColumnName="FoodDescription" />
+          <ScalarProperty Name="FoodImage" ColumnName="FoodImage" />
+          <ScalarProperty Name="FoodRestaurentId" ColumnName="FoodRestaurentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Restaurants">
+      <EntityTypeMapping TypeName="OnlineFoodDeliveryAPPDBModel.Restaurant">
+        <MappingFragment StoreEntitySet="Restaurants">
+          <ScalarProperty Name="RestaurentId" ColumnName="RestaurentId" />
+          <ScalarProperty Name="RestaurentName" ColumnName="RestaurentName" />
+          <ScalarProperty Name="RestaurentAvailable" ColumnName="RestaurentAvailable" />
+          <ScalarProperty Name="RestaurentLogoUrl" ColumnName="RestaurentLogoUrl" />
+          <ScalarProperty Name="RestaurentAdminId" ColumnName="RestaurentAdminId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fdcf73766c6849038e9fdf2b8c137964" Name="Diagram1">
+        <EntityTypeShape EntityType="OnlineFoodDeliveryAPPDBModel.Admin" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineFoodDeliveryAPPDBModel.Cart" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineFoodDeliveryAPPDBModel.Customer" Width="1.5" PointX="5.25" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineFoodDeliveryAPPDBModel.Food" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="OnlineFoodDeliveryAPPDBModel.Restaurant" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="OnlineFoodDeliveryAPPDBModel.FK_RestaurentAdmin" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineFoodDeliveryAPPDBModel.FK_CartFood" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineFoodDeliveryAPPDBModel.FK_CustomerCart" ManuallyRouted="false" />
+        <AssociationConnector Association="OnlineFoodDeliveryAPPDBModel.FK_FoodRestaurent" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
